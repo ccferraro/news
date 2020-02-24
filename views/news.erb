@@ -24,8 +24,10 @@
 
     <div class="container mt-5">
       <h1>YOUR NEWS AND WEATHER</h1>
-        <h2> Local Weather </h2>
-        <%=@location %>
+        <h2> Local Weather for <%=@location %></h2>
+            <h3>  It is currently <%= @current_temp %> degrees (F) and <%= @current_summary %>.</h3>
+        
+
         <%= @lat_long %>
         <%= @forecast %>
 

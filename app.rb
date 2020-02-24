@@ -20,7 +20,7 @@ end
 
 get "/news" do
   # do everything else
-    @location = params["location"]
+    @location = params["location"].capitalize
     @geocoder_results = Geocoder.search(@location)
     lat_long = @geocoder_results.first.coordinates
     lat = "#{lat_long[0]}"
@@ -28,7 +28,7 @@ get "/news" do
        
     @forecast = ForecastIO.forecast("#{lat_long[0]}","#{lat_long[1]}").to_hash
     @current_temp = @forecast["currently"]["temperature"]
-    @current_summary = @forecast["currently"]["summary"]
+    @current_summary = @forecast["currently"]["summary"].downcase
 
     for @day in @forecast["daily"]["data"] do
         @daytemp = @day["temperaturehigh"]
