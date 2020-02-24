@@ -48,6 +48,4 @@ get "/news" do
     end
     
     view "news"
-    
-
 end
