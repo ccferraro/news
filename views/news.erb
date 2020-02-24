@@ -23,13 +23,17 @@
   <body>
 
     <div class="container mt-5">
-      <h1>News</h1>
-      <h2>Please Enter Your Location</h2>
+      <h1>YOUR NEWS AND WEATHER</h1>
+        <h2> Local Weather </h2>
+        <%=@location %>
+        <%= @lat_long %>
+        <%= @forecast %>
 
-        <form action="/news">
-            <label>Location:</label>
-            <input name = "location">
-            <button type="submit" class = "btn btn-success"> Submit</button>
+
+        <h2> Top Headlines </h2>
+
+       
+
 
     </div>
 
