@@ -22,19 +22,29 @@
   </head>
   <body>
 
-    <div class="container mt-5">
+    <div class="container mt-6">
       <h1>YOUR NEWS AND WEATHER</h1>
         <h2> Local Weather for <%=@location %></h2>
             <h3>  It is currently <%= @current_temp %> degrees (F) and <%= @current_summary %>.</h3>
-        
 
-        <%= @lat_long %>
-        <%= @forecast %>
+        <h2> Future Forecast </h2>
+            <h3>  
 
+        <h2> Top National Headlines </h2>
+            <div class="col">
+                    <% for article in @news["articles"] %>
+                                <a href="<%= article["url"] %>"></a>
+                            </div>
+                            <div class="col-10">
+                               <ul>
+                                <li> <a href="<%= article["url"] %>"><b><%= article["title"] %></b></a></br></li>
+                                </ul>
 
-        <h2> Top Headlines </h2>
-
-       
+                                <div class="d-none d-md-block">
+                                </div>
+                    <% end %>
+            </div>
+    </div>
 
 
     </div>

@@ -11,15 +11,18 @@ ForecastIO.api_key = "4041b75045628c01885c0965c88a8e70"
 
 
 #LOCATION ASK:
-get "/" do
   # show a view that asks for the location
+
+  get "/" do
   view "ask"
 end
 
 #WEATHER & NEWS:
-
-get "/news" do
   # do everything else
+
+
+#WEATHER:
+get "/news" do
     @location = params["location"].capitalize
     @geocoder_results = Geocoder.search(@location)
     lat_long = @geocoder_results.first.coordinates
@@ -35,8 +38,16 @@ get "/news" do
         @daysum = @day["summary"]
     end
 
-    # @news_stories=HTTParty.get(url).parsed_response.to_hash 
-    # url = "https://newsapi.org/v2/top-headlines?country=us&apiKey=eb952467a01944eea150c6847b3bd204"
- 
+    
+    @url = "https://newsapi.org/v2/top-headlines?country=us&apiKey=eb952467a01944eea150c6847b3bd204"
+      @news = HTTParty.get(@url).parsed_response.to_hash
+
+    for daily_news in @news["articles"] do
+        @news_title = daily_news["title"]
+        @story_url = daily_news["url"]
+    end
+    
     view "news"
+    
+
 end
