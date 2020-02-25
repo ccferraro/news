@@ -7,7 +7,7 @@
 
     <!-- Google Fonts -->
     <!-- Swap out "Roboto" for the font(s) you want to use -->
-    <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=ABeeZee|Barlow+Semi+Condensed|Catamaran|Julius+Sans+One&display=swap" rel="stylesheet">
     
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/all.css" crossorigin="anonymous">
@@ -23,80 +23,91 @@
   </head>
   <body>
 
- <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="#">Your Daily News</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-          <div class="navbar-nav">
-            <a class="btn btn-outline-secondary" href="/">Choose Another Location</a>
-          </div>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="#">Your Daily News</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+                <a class="btn btn-outline-secondary" href="/">Choose Another Location</a>
+            </div>
+            </div>
+        </nav>
+
+        <div class="jumbotron">
+            <h1 class="display-4">YOUR WEATHER AND NEWS</h1>
+            <p class="lead"></p>
         </div>
-      </nav>
 
-      <div class="jumbotron">
-        <h1 class="display-4">YOUR WEATHER AND NEWS</h1>
-        <p class="lead"></p>
-      </div>
+   
 
-    <div class="container mt-6">
-        <hr class="my-4">
-        <h2> Local Weather for <%=@location %></h2>
-            <h4>  It is <%= @current_temp %> degrees (F) with the current condition of <%= @current_summary %>.</h4>
+        <div class="container mt-6">
+       
+            <div class="container mt-5">
+       
+            <h2> Local Weather for <%=@location %></h2>
+              <hr class="my-4">
+                <p>  It is <%= @current_temp %> degrees (F) with the current condition of <%= @current_summary %>.</p>
+            </div>
 
-        <h2> Future Forecast </h2>
+            <div class="container mt-5">
+                <hr class="my-4">
+            <h2> Future Forecast </h2>
+                <div class="col text-center">
+                <table id="table" class="table table-striped">
+                <thead>
+                    <tr>
+                    <th scope="col">Day</th>
+                    <th scope="col">High (F)</th>
+                    <th scope="col">Low (F)</th>
+                    <th scope="col">Conditions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                    <th scope="row">Tomorrow</th>
+                    <td><%=@daytemphigh[0]%></td>
+                    <td><%=@daytemplow[0]%></td>
+                    <td><%=@daysum[0]%></td>
+                    </tr>
+                    <tr>
+                    <th scope="row">In 2 Days</th>
+                    <td><%=@daytemphigh[1]%></td>
+                    <td><%=@daytemplow[1]%></td>
+                    <td><%=@daysum[1]%></td>
+                    </tr>
+                    <tr>
+                    <th scope="row">In 3 Days</th>
+                    <td><%=@daytemphigh[2]%></td>
+                    <td><%=@daytemplow[2]%></td>
+                    <td><%=@daysum[2]%></td>
+                    </tr>
+                </tbody>
+                </table>
+                </div>
+                </div>
 
-            <table class="table table-striped">
-            <thead>
-                <tr>
-                <th scope="col">Day</th>
-                <th scope="col">High (F)</th>
-                <th scope="col">Low (F)</th>
-                <th scope="col">Conditions</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                <th scope="row">Tomorrow</th>
-                <td><%=@daytemphigh[0]%></td>
-                <td><%=@daytemplow[0]%></td>
-                <td><%=@daysum[0]%></td>
-                </tr>
-                <tr>
-                <th scope="row">In 2 Days</th>
-                <td><%=@daytemphigh[1]%></td>
-                <td><%=@daytemplow[1]%></td>
-                <td><%=@daysum[1]%></td>
-                </tr>
-                <tr>
-                <th scope="row">In 3 Days</th>
-                <td><%=@daytemphigh[2]%></td>
-                <td><%=@daytemplow[2]%></td>
-                <td><%=@daysum[2]%></td>
-                </tr>
-            </tbody>
-            </table>
-
-
-        <h2> Top National Headlines </h2>
-            <div class="col">
-                    <% for article in @news["articles"] %>
-                                <a href="<%= article["url"] %>"></a>
-                            </div>
-                            <div class="col-10">
-                               <ul>
-                                <li> <a href="<%= article["url"] %>"><b><%= article["title"] %></b></a></br></li>
+                <hr class="my-4">
+            <h2> Top National Headlines </h2>
+                <hr class="my-4">
+                <div class="col">
+                        <% for article in @news["articles"] %>
+                                    <a href="<%= article["url"] %>"></a>
+                                </div>
+                                <div class="col-10">
+                                <ul>
+                                    <li> <a href="<%= article["url"] %>"><%= article["title"] %></a></br></li>
                                 </ul>
 
-                                <div class="d-none d-md-block">
+                                     <div class="d-none d-md-block">
                                 </div>
-                    <% end %>
-            </div>
-    </div>
+                        <% end %>
+                </div>
+        </div>
 
 
-    </div>
+        </div>
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->

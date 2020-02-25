@@ -6,20 +6,32 @@ h1 {
     margin-left: 10px;
     margin-right: 10px;
     text-align: center;
+    font-family: 'Julius Sans One';
 }
 
 h2 {
-    color:darkslategrey
-    font-size: 60px
+    color: midnightblue;
+    font-size: 40px;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    margin-left: 50px;
+    margin-right: 50px;
+    font-family: 'ABeeZee';
     text-align: center
 }
 
-h3{
-
+p{
+    font-size: 30px;
+    font-family: 'ABeeZee';
+    text-align: center;
+    
 }
 
-h4{
-    color:darkslategrey
-    font-size: 40px
-    text-align: left
-    font-style: italic
+.jumbotron{
+    background-color: rgb(221, 224, 226)
+    
+}
+
+body{
+    font-family: 'ABeeZee';
+}
