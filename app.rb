@@ -32,19 +32,26 @@ get "/news" do
     @forecast = ForecastIO.forecast("#{lat_long[0]}","#{lat_long[1]}").to_hash
     @current_temp = @forecast["currently"]["temperature"]
     @current_summary = @forecast["currently"]["summary"].downcase
+    @daytemphigh= []
+    @daytemplow=[]
+    @daysum= []
 
-    for @day in @forecast["daily"]["data"] do
-        @daytemp = @day["temperaturehigh"]
-        @daysum = @day["summary"]
+
+    for @day_forecast in @forecast["daily"]["data"] do
+         @daytemphigh << @day_forecast["temperatureHigh"]
+         @daytemplow << @day_forecast["temperatureLow"]
+         @daysum << @day_forecast["summary"]
     end
 
     
     @url = "https://newsapi.org/v2/top-headlines?country=us&apiKey=eb952467a01944eea150c6847b3bd204"
       @news = HTTParty.get(@url).parsed_response.to_hash
+      @news_title=[]
+      @story_link=[]
 
     for daily_news in @news["articles"] do
-        @news_title = daily_news["title"]
-        @story_url = daily_news["url"]
+        @news_title << daily_news["title"]
+        @story_link << daily_news["url"]
     end
     
     view "news"

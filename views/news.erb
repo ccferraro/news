@@ -19,16 +19,65 @@
     <link rel="stylesheet" href="/styles.css">
 
     <title>News</title>
+
   </head>
   <body>
+
+ <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">Your Daily News</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+          <div class="navbar-nav">
+            <a class="btn btn-outline-secondary" href="/">Choose Another Location</a>
+          </div>
+        </div>
+      </nav>
+
+      <div class="jumbotron">
+        <h1 class="display-4">YOUR WEATHER AND NEWS</h1>
+        <p class="lead"></p>
+      </div>
 
     <div class="container mt-6">
       <h1>YOUR NEWS AND WEATHER</h1>
         <h2> Local Weather for <%=@location %></h2>
-            <h3>  It is currently <%= @current_temp %> degrees (F) and <%= @current_summary %>.</h3>
+            <h3>  It is <%= @current_temp %> degrees (F) with the current condition of <%= @current_summary %>.</h3>
 
         <h2> Future Forecast </h2>
-            <h3>  f </h3>
+
+            <table class="table table-striped">
+            <thead>
+                <tr>
+                <th scope="col">Day</th>
+                <th scope="col">High (F)</th>
+                <th scope="col">Low (F)</th>
+                <th scope="col">Conditions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                <th scope="row">Tomorrow</th>
+                <td><%=@daytemphigh[0]%></td>
+                <td><%=@daytemplow[0]%></td>
+                <td><%=@daysum[0]%></td>
+                </tr>
+                <tr>
+                <th scope="row">In 2 Days</th>
+                <td><%=@daytemphigh[1]%></td>
+                <td><%=@daytemplow[1]%></td>
+                <td><%=@daysum[1]%></td>
+                </tr>
+                <tr>
+                <th scope="row">In 3 Days</th>
+                <td><%=@daytemphigh[2]%></td>
+                <td><%=@daytemplow[2]%></td>
+                <td><%=@daysum[2]%></td>
+                </tr>
+            </tbody>
+            </table>
+
 
         <h2> Top National Headlines </h2>
             <div class="col">
